@@ -1,0 +1,11 @@
+This directory should contain all datasets (in some organization) 
+used in this repository. Unique data sets (one's I've made) will 
+likely get saved here, but most are available elsewhere. Since saving 
+this all to the repo would be silly and redundant, I'll document what and where
+I got them from in this file:
+
+And eventually I write a script to just pull all / some of these for
+you with a few lines
+
+melb_data.csv:
+    https://www.kaggle.com/dansbecker/melbourne-housing-snapshot/data
