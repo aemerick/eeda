@@ -1,0 +1,16 @@
+First attempt at implementing ML models on 'real' data. Tried to hack together
+a reasonable answer in a couple hours (which is why the coding is really ugly).
+Have a few thoughts going forward on how to clean this up for this paricular model
+and other models in general, particularly when doing something where we generate
+a model to infer missing data (e.g. making classes to handle making sure all the 
+data is cleaned appropriately and assiging sub-models (right term?) as attributes
+of that class). ALSO learned very quickly that the 'hard' part isn't
+really training the model. Its making sure the data is cleaned and prepared properly 
+(even for when its mostly already pretty 'nice' like in this dataset).
+Clearly worthwhile spending more time learning significance of individual features
+and obvious correlations before blindly hitting things with a hammer.
+
+I'm planning on iterating on this a bit more, but I may decide to just stop here
+and sink more time into a different project with a less popular dataset. Doing 
+something else may be more worthwhile (i.e. more easily provable that I actually did
+some work and didn't just copy-paste from a blog)
