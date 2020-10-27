@@ -103,7 +103,11 @@ def dijkstra(G, source, return_paths = False):
         raise RuntimeError
 
     if return_paths:
-        print(paths)
+
+        #
+        # do some error checking and cleaning to make sure
+        # all paths are defined including the start and end nodes
+        #
         for u in range(G.num_vertices):
             if len(paths[u]) == 0:
                 paths[u].append(u)
@@ -113,24 +117,18 @@ def dijkstra(G, source, return_paths = False):
             if paths[u][0] != source:
                 paths[u].insert(0,source)
 
-        print(paths)
-        """
+        #
+        # Now need to prune the paths list since there may
+        # be multiple ways to get to a node, and the first recorded
+        # path may not always be the shortest.
+        #
         for u in range(G.num_vertices):
-            pathsincomplete = True
-            count = 0
-            while pathsincomplete and count < 2:
-                pathsincomplete = False
+            # get indexes where destination occurs multiple times 
+            u_indexes = [i for i in range(len(paths[u])) if paths[u][i] == u]
+            if len(u_indexes) > 1:
+                paths[u] = [paths[u][0]] +\
+                           paths[u][u_indexes[-2]+1:]
 
-                for i in range(1,len(paths[u])):
-                    v,w = paths[u][i], paths[u][i-1]
-                    print(paths)
-                    if G.adj[v][w] == 0:
-                        paths[u] = paths[u][:i] +\
-                                   (paths[w][1:-1])+\
-                                   paths[u][i:]
-                        pathsincomplete = True
-                count = count + 1
-        """
         return dist, paths
     else:
         return dist
