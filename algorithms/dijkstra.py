@@ -33,7 +33,11 @@ class Graph():
 
     def minDistance(self, dist, sptSet):
         """
-        Find the vertex of
+        Given a distance array from source to all vertices (initialized as
+        INF for unchecked vertices) and the shortest path tree set of vertices
+        already visited, returns the vertex with the shortest distance. This works
+        ONLY if distances are set to INF for vertices that are not adjacent
+        to visited vertices in sptSet.
         """
 
         mindist   = _MAX_INT
