@@ -85,22 +85,20 @@ def dijkstra(G, source, return_paths = False):
         sptSet[u] = True
 
         # Now loop through the dista value of all adjacent vertices
-        # from u. If the current known distance is > the new distance,
+        # from u. If the current known distance (dist[v]) is > the
+        # new distance (dist[u] + G.adj[u][v]), then
         # update current distance with the new distance
         # (step c of alg loop)
+        #
+        # if paths are to be returned, add to the paths
         for v in range(G.num_vertices):
             if (G.adj[u][v] > 0) and (not sptSet[v]) and\
-               (dist[v] > dist[u] + G.adj[u][v]):
+               (dist[u] + G.adj[u][v] < dist[v]):
 
                 dist[v]  = dist[u] + G.adj[u][v]
 
                 if return_paths:
                     paths[v].extend(paths[u] + [v])
-
-    if not (all(sptSet)):
-        print("All vertices not in sptSet")
-        print(sptSet)
-        raise RuntimeError
 
     if return_paths:
 
@@ -123,7 +121,7 @@ def dijkstra(G, source, return_paths = False):
         # path may not always be the shortest.
         #
         for u in range(G.num_vertices):
-            # get indexes where destination occurs multiple times 
+            # get indexes where destination occurs multiple times
             u_indexes = [i for i in range(len(paths[u])) if paths[u][i] == u]
             if len(u_indexes) > 1:
                 paths[u] = [paths[u][0]] +\
