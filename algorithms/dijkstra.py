@@ -73,7 +73,7 @@ def dijkstra(G, source, return_paths = False):
     # the shortest path matrix
     #
 
-    for v in range(G.num_vertices):
+    while not all(sptSet):
 
         # Pick the minimum distance vertex from the set
         # of vertices NOT currently processed.
@@ -95,18 +95,26 @@ def dijkstra(G, source, return_paths = False):
                 dist[v]  = dist[u] + G.adj[u][v]
 
                 if return_paths:
-                    paths[v].append(u)
+                    paths[v].extend(paths[u] + [v])
 
+    if not (all(sptSet)):
+        print("All vertices not in sptSet")
+        print(sptSet)
+        raise RuntimeError
 
     if return_paths:
         print(paths)
         for u in range(G.num_vertices):
-            paths[u].append(u)
+            if len(paths[u]) == 0:
+                paths[u].append(u)
+            elif paths[u][-1] != u:
+                paths[u].append(u)
 
             if paths[u][0] != source:
                 paths[u].insert(0,source)
 
         print(paths)
+        """
         for u in range(G.num_vertices):
             pathsincomplete = True
             count = 0
@@ -122,7 +130,7 @@ def dijkstra(G, source, return_paths = False):
                                    paths[u][i:]
                         pathsincomplete = True
                 count = count + 1
-
+        """
         return dist, paths
     else:
         return dist
