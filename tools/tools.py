@@ -70,6 +70,9 @@ def plot_categorical(xvar,
     
     ax.bar(categories, y)
 
+    if len(categories) > 2: # personal preference
+        ax.tick_params(axis='x', labelrotation=60)
+
     return bins, y, ax
 
 def plot_continuous(xvar, 
