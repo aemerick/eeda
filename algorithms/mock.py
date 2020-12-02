@@ -9,6 +9,9 @@ e.g. 1996 - leap year
 
 """
 
+def leapyear(yr : int) -> bool:
+    return (yr % 4) == 0
+
 
 """
 Question 1
