@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plot_categorical(xvar, 
-                     yvar, 
+def plot_categorical(xvar,
+                     yvar,
                      rfunction,
                      categories=None,
                      data=None,
@@ -19,15 +19,15 @@ def plot_categorical(xvar,
     the mean by passing 'np.mean' as `rfunction`,
     or more complex things like computing the fraction
     of points in each bin with some condition on yvar:
-    
+
     Example, fraction of each points with associated y's
     > 10 could be done with passing:
-    
+
         rfunction = lambda u : np.sum(u>10) / len(u)
-    
+
     Parameters:
     ------------
-    
+
     xvar      : np.array of x values OR valid key
                 in data.
     yvar      : np.array of y values OR valid key
@@ -42,7 +42,7 @@ def plot_categorical(xvar,
                 yvar as keys of `data`, where `data` can
                 be any key-accessed object, such as a dictionary
                 or a pandas DataFrame. Default : None
-           
+
     Returns:
     ---------
     x    : np.array. x bins
@@ -53,21 +53,20 @@ def plot_categorical(xvar,
     if not (data is None):
         xvar = data[xvar]
         yvar = data[yvar]
-    
+
     if ax is None:
         fig, ax = plt.subplots()
         fig.set_size_inches(6,6)
-    
+
     if categories is None:
         categories = np.unique(xvar)
-    
+
     y = np.zeros(len(categories))
-    
+
     for i,x in enumerate(categories):
-        select = xvar == x    
+        select = xvar == x
         y[i] = rfunction( yvar[select] )
-        
-    
+
     ax.bar(categories, y)
 
     if len(categories) > 2: # personal preference
@@ -75,11 +74,11 @@ def plot_categorical(xvar,
 
     return bins, y, ax
 
-def plot_continuous(xvar, 
-                    yvar, 
+def plot_continuous(xvar,
+                    yvar,
                     rfunction,
                     data=None,
-                    bins=10, 
+                    bins=10,
                     ax = None):
     """
     Plot some reduction function of yvar in bins
@@ -87,22 +86,22 @@ def plot_continuous(xvar,
     the running mean by passing 'np.mean' as `rfunction`,
     or more complex things like computing the fraction
     of points in each bin with some condition on yvar:
-    
+
     Example, fraction of each points with associated y's
     > 10 could be done with passing:
-    
+
         rfunction = lambda u : np.sum(u>10) / len(u)
-    
+
     Parameters:
     ------------
-    
+
     xvar      : np.array of x values OR valid key
                 in data.
     yvar      : np.array of y values OR valid key
                 in data.
     rfunction : a function that accepts an array
-                and returns a single value. 
-    data      : Optional. If provided, treats xvar and 
+                and returns a single value.
+    data      : Optional. If provided, treats xvar and
                 yvar as keys of `data`, where `data` can
                 be any key-accessed object, such as a dictionary
                 or a pandas DataFrame. Default : None
