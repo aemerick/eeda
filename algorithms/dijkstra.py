@@ -14,6 +14,8 @@ algorithm just for practice sake:
       of "u" (from source) and weight of edge u-v is < ditance value of "v",
       update distance value of "v". (ahh ok ... works cause all init to INF)
 
+
+Implemented in O(V^2) 
 """
 
 import sys
