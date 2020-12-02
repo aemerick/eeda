@@ -55,3 +55,56 @@ class Sort:
         arr[i+1]  = val
 
         return i + 1
+
+
+    def mergesort(self, arr, low, high):
+
+        if high <= low:
+            return
+
+        middle  = (low + high) // 2
+
+        self.mergesort(arr,low,middle)
+        self.mergesort(arr,middle+1,high)
+
+        i=j=k=0
+
+        while i < (middle-low) and j < (high-(middle+1)):
+            print(low,high, arr)
+            if arr[i] < arr[j]:
+                arr[k], arr[low+i] = arr[low+i], arr[k]
+                i += 1
+
+            else:
+                arr[k], arr[middle+1+j] = arr[middle+1+j], arr[k]
+                j += 1
+
+            k += 1
+
+        while i < middle-low:
+            arr[k], arr[low+i] = arr[low+i], arr[k]
+            i += 1
+            k += 1
+
+        while j < high-(middle+1):
+            arr[k], arr[middle+1+j] = arr[middle+1+j], arr[k]
+            j += 1
+            k += 1
+
+        return
+
+def printList(arr):
+    for i in range(len(arr)):
+        print(arr[i], end =" ")
+    print()
+
+if __name__ == "__main__":
+
+
+    arr = [12, 11, 13, 5, 6, 7]
+    print ("Given array is", end ="\n")
+    printList(arr)
+    s = Sort()
+    s.mergesort(arr,0,len(arr))
+    print("Sorted array is: ", end ="\n")
+    printList(arr)
